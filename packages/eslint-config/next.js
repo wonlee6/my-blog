@@ -1,12 +1,13 @@
-import js from "@eslint/js"
-import pluginNext from "@next/eslint-plugin-next"
-import eslintConfigPrettier from "eslint-config-prettier"
-import pluginReact from "eslint-plugin-react"
-import pluginReactHooks from "eslint-plugin-react-hooks"
-import globals from "globals"
-import tseslint from "typescript-eslint"
+import js from "@eslint/js";
+import pluginNext from "@next/eslint-plugin-next";
+import eslintConfigPrettier from "eslint-config-prettier";
+import pluginReact from "eslint-plugin-react";
+import pluginReactHooks from "eslint-plugin-react-hooks";
+import globals from "globals";
+import tseslint from "typescript-eslint";
+import eslintPluginTailwindcss from "eslint-plugin-tailwindcss";
 
-import { config as baseConfig } from "./base.js"
+import { config as baseConfig } from "./base.js";
 
 /**
  * A custom ESLint configuration for libraries that use Next.js.
@@ -30,10 +31,13 @@ export const nextJsConfig = [
   {
     plugins: {
       "@next/next": pluginNext,
+      tailwindcss: eslintPluginTailwindcss,
     },
     rules: {
       ...pluginNext.configs.recommended.rules,
       ...pluginNext.configs["core-web-vitals"].rules,
+      ...eslintPluginTailwindcss.configs.recommended.rules,
+      "tailwindcss/no-custom-classname": "off",
     },
   },
   {
@@ -48,4 +52,4 @@ export const nextJsConfig = [
       "react/prop-types": "off",
     },
   },
-]
+];
