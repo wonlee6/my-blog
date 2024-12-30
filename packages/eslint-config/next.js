@@ -8,6 +8,7 @@ import tseslint from "typescript-eslint";
 import eslintPluginTailwindcss from "eslint-plugin-tailwindcss";
 import eslintJsxA11y from "eslint-plugin-jsx-a11y";
 import eslintImport from "eslint-plugin-import";
+import eslintPrettier from "eslint-config-prettier";
 
 import { config as baseConfig } from "./base.js";
 
@@ -36,8 +37,7 @@ export const nextJsConfig = [
     },
     rules: {
       ...pluginNext.configs.recommended.rules,
-      ...pluginNext.configs["core-web-vitals"].rules,
-     
+      ...pluginNext.configs["core-web-vitals"].rules
     },
   },
   {
@@ -56,7 +56,8 @@ export const nextJsConfig = [
     plugins: {
       tailwindcss: eslintPluginTailwindcss,
       "jsx-a11y": eslintJsxA11y,
-      "import": eslintImport
+      "import": eslintImport,
+      "prettier": eslintPrettier
     },
     rules: {
       ...eslintPluginTailwindcss.configs.recommended.rules,
