@@ -5,7 +5,7 @@
     "paths": {
       "@/*": ["./*"],
       "@workspace/ui/*": ["../../packages/ui/src/*"],
-      "contentlayer2/generated": [
+      "contentlayer/generated": [
         "./.contentlayer/generated"
       ]
     },

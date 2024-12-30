@@ -6,7 +6,8 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "clean": "rimraf node_modules && rimraf .turbo && rimraf ./apps/web/node_modules && rimraf ./apps/web/.turbo && rimraf ./apps/web/.next"
   },
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",

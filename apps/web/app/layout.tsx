@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from 'next/font/google'
 
 import '@workspace/ui/globals.css'
+import Navigation from '@/components/header/navigation'
 import { Providers } from '@/components/providers'
 
 const fontSans = Geist({
@@ -20,8 +21,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased `}>
-        <Providers>{children}</Providers>
+      <body className={`${fontSans.variable} ${fontMono.variable} min-h-svh font-sans antialiased`}>
+        <Providers>
+          <div className='relative flex min-h-svh flex-col bg-background'>
+            <div className='border-grid flex flex-1 flex-col'>
+              <header className='border-grid sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
+                <Navigation />
+              </header>
+              <main className='flex flex-1 flex-col'>{children}</main>
+              <footer></footer>
+            </div>
+          </div>
+        </Providers>
       </body>
     </html>
   )
