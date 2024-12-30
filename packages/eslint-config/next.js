@@ -6,6 +6,8 @@ import pluginReactHooks from "eslint-plugin-react-hooks";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 import eslintPluginTailwindcss from "eslint-plugin-tailwindcss";
+import eslintJsxA11y from "eslint-plugin-jsx-a11y";
+import eslintImport from "eslint-plugin-import";
 
 import { config as baseConfig } from "./base.js";
 
@@ -31,13 +33,11 @@ export const nextJsConfig = [
   {
     plugins: {
       "@next/next": pluginNext,
-      tailwindcss: eslintPluginTailwindcss,
     },
     rules: {
       ...pluginNext.configs.recommended.rules,
       ...pluginNext.configs["core-web-vitals"].rules,
-      ...eslintPluginTailwindcss.configs.recommended.rules,
-      "tailwindcss/no-custom-classname": "off",
+     
     },
   },
   {
@@ -52,4 +52,51 @@ export const nextJsConfig = [
       "react/prop-types": "off",
     },
   },
+  {
+    plugins: {
+      tailwindcss: eslintPluginTailwindcss,
+      "jsx-a11y": eslintJsxA11y,
+      "import": eslintImport
+    },
+    rules: {
+      ...eslintPluginTailwindcss.configs.recommended.rules,
+      ...eslintJsxA11y.configs.recommended.rules,
+      ...eslintImport.configs.recommended.rules,
+      "tailwindcss/no-custom-classname": "off",
+      "import/no-unresolved": "off",
+      "import/order": [
+        "warn",
+        {
+          "groups": [
+            "type",
+            "builtin",
+            "object",
+            "external",
+            "internal",
+            "parent",
+            "sibling",
+            "index"
+          ],
+          "pathGroups": [
+            // {
+            //   "pattern": "react",
+            //   "group": "builtin",
+            //   "position": "before"
+            // }
+            {
+              "pattern": "~/**",
+              "group": "external",
+              "position": "after"
+            }
+          ],
+          "pathGroupsExcludedImportTypes": ["react"], // external로 간주되어 alias 적용안되는 문제 해결
+          "alphabetize": {
+            "order": "asc",
+            "caseInsensitive": true // 대문자 우선
+          },
+          "newlines-between": "always" // 그룹별 모두 한줄 띄우기
+        }
+      ]
+    },
+  }
 ];
