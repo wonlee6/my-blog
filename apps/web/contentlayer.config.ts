@@ -1,49 +1,49 @@
-import {defineDocumentType, makeSource} from "contentlayer2/source-files";
-import highlight from 'rehype-highlight';
-import {rehypePrettyCode} from 'rehype-pretty-code';
-import remarkGfm from "remark-gfm";
+import { defineDocumentType, makeSource } from 'contentlayer2/source-files'
+import highlight from 'rehype-highlight'
+import { rehypePrettyCode } from 'rehype-pretty-code'
+import remarkGfm from 'remark-gfm'
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
-  contentType: 'md',
+  contentType: 'markdown',
   filePathPattern: `**/*.md`,
   fields: {
     title: {
       type: 'string',
-      required: true,
+      required: true
     },
     description: {
       type: 'string',
-      required: true,
+      required: true
     },
     tag: {
       type: 'string',
-      required: true,
+      required: true
     },
     createdAt: {
       type: 'date',
-      required: true,
-    },
-  },
-}));
+      required: true
+    }
+  }
+}))
 
 export default makeSource({
   // 마크다운 파일이 저장되어 있는 루트 폴더
   contentDirPath: 'posts',
   documentTypes: [Post],
-  mdx: {
+  markdown: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
       [
         rehypePrettyCode,
         {
-          theme: 'github-dark', // 코드작성시 적용할 테마
-        },
+          theme: 'github-dark' // 코드작성시 적용할 테마
+        }
       ],
-      highlight,
-    ],
-  },
-});
+      highlight
+    ]
+  }
+})
 
 // import {defineDocumentType, defineNestedType, makeSource} from "contentlayer2/source-files";
 // import remarkGfm from "remark-gfm";
@@ -132,7 +132,7 @@ export default makeSource({
 //     esbuildOptions(options) {
 //       options.plugins ||= [];
 //       options.plugins.unshift(RawPlugin());
- 
+
 //       return options;
 //     },
 //     rehypePlugins: [

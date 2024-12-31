@@ -31,7 +31,6 @@ export default function RootLayout({
                 <Navigation />
               </header>
               <main className='flex flex-1 flex-col'>{children}</main>
-              <footer></footer>
             </div>
           </div>
         </Providers>

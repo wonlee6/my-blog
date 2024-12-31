@@ -1,8 +1,6 @@
 import { Metadata } from 'next'
 
-// eslint-disable-next-line import/named
-import { allPosts, Post } from '../.contentlayer/generated'
-
+import { allPosts, Post } from '@/.contentlayer/generated'
 import HomePage from '@/components/home-page'
 
 export const metadata: Metadata = {

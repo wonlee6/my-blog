@@ -7,9 +7,12 @@ import {
   CardHeader,
   CardTitle
 } from '@workspace/ui/components/card'
+import { format } from 'date-fns'
 import { CircleArrowUp } from 'lucide-react'
 import Link from 'next/link'
 import { Fragment, useMemo, useState } from 'react'
+
+import Footer from './footer'
 
 import { Posts } from '@/app/page'
 import useIntersectionObserver from '@/hooks/useIntersectionObserver'
@@ -55,7 +58,7 @@ export default function HomePage({ allPosts }: Props) {
                     <div className='flex justify-between'>
                       <CardTitle>{item.title}</CardTitle>
                       <CardDescription>
-                        {new Date(item.createdAt).toLocaleDateString()}
+                        {format(new Date(item.createdAt), 'yyyy년 MM월 dd일')}
                       </CardDescription>
                     </div>
                     <CardDescription>{item.description ?? ''}</CardDescription>
@@ -63,7 +66,7 @@ export default function HomePage({ allPosts }: Props) {
                   <CardFooter className='justify-end'>
                     <Link
                       className='text-base font-semibold leading-6 text-teal-500 hover:text-teal-600'
-                      href={`/post/${item._id.split('.')[0]}`}
+                      href={`/post/${item._raw.flattenedPath}`}
                       prefetch>
                       Read More -{'>'}
                     </Link>
@@ -76,8 +79,10 @@ export default function HomePage({ allPosts }: Props) {
         </div>
       </section>
 
+      <Footer />
+
       <CircleArrowUp
-        className='fixed bottom-10 right-10 cursor-pointer text-emerald-600 transition hover:text-emerald-500'
+        className='fixed bottom-20 right-20 cursor-pointer text-emerald-600 transition hover:text-emerald-500 max-lg:hidden'
         size={60}
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       />
