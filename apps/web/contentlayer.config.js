@@ -5,16 +5,8 @@ import remarkGfm from "remark-gfm";
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
-  contentType: 'mdx',
-  filePathPattern: `**/*.mdx`, // mdx 파일경로 패턴
-
-  // mdx로 작성한 글 정보에 대해 입력해야하는 필드 정의
-  /*
-    [필드명]: {
-      type: '자료형',
-      required: '필수여부',
-    }
-  */
+  contentType: 'md',
+  filePathPattern: `**/*.md`,
   fields: {
     title: {
       type: 'string',
@@ -24,13 +16,9 @@ export const Post = defineDocumentType(() => ({
       type: 'string',
       required: true,
     },
-    category: {
+    tag: {
       type: 'string',
       required: true,
-    },
-    thumbnail: {
-      type: 'string',
-      required: false,
     },
     createdAt: {
       type: 'date',
