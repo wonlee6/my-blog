@@ -25,7 +25,7 @@ export default function RootLayout({
         <Providers>
           <div className='relative flex min-h-svh flex-col bg-background'>
             <div className='border-grid flex flex-1 flex-col'>
-              <header className='border-grid sticky top-0 z-50 w-full border-b border-b-border/30 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
+              <header className='border-grid sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
                 <Navigation />
               </header>
               <main className='flex flex-1 flex-col'>{children}</main>

@@ -15,7 +15,7 @@ export default function Navigation() {
   const { setTheme } = useTheme()
 
   return (
-    <div className='mx-auto w-full max-w-screen-2xl border-x border-border/30'>
+    <div className='mx-auto w-full max-w-screen-xl'>
       <div className='mx-auto flex h-14 items-center px-2 2xl:px-4'>
         <div className='mr-4 hidden md:flex'>
           <Link className='mr-4 flex items-center gap-2 lg:mr-6' href={'/'}>

@@ -1,19 +1,25 @@
 import { Metadata } from 'next'
-// import {allPosts} from '../.contentlayer/generated'
+
+// eslint-disable-next-line import/named
+import { allPosts, Post } from '../.contentlayer/generated'
+
+import HomePage from '@/components/home-page'
 
 export const metadata: Metadata = {
   title: 'Frontend - 기술 블로그',
   description: 'Front End Study Blog. Focus on React, Javascript, Typescript, and more!',
   authors: [{ name: 'Sang won', url: 'https://wonlee1205-blog.vercel.app/' }],
   keywords: [
-    'react',
-    'nextjs',
-    'javascript',
-    'typescript',
-    'frontend',
-    'recoil',
-    'tailwindcss',
-    '프론트 엔드'
+    'React',
+    'Nextjs',
+    'Javascript',
+    'Typescript',
+    'Recoil',
+    'Tailwindcss',
+    'Supabase',
+    'Java',
+    '프론트 엔드',
+    'front end'
   ],
   creator: 'sang won',
   openGraph: {
@@ -32,12 +38,8 @@ export const metadata: Metadata = {
   }
 }
 
+export type Posts = Post
+
 export default function Page() {
-  return (
-    <section className='size-full'>
-      <div className='mx-auto flex h-full max-w-5xl items-center justify-center'>
-        {/* <HomePage allPostsData={allPostsData} /> */}
-      </div>
-    </section>
-  )
+  return <HomePage allPosts={allPosts} />
 }

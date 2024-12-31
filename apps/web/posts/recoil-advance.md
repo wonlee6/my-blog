@@ -2,7 +2,7 @@
 title: 'Recoil - Advanced'
 createdAt: '2024-06-24'
 tag: 'recoil'
-description: 'recoil - best practice에 대한 참고'
+description: 'Recoil Best Practice에 대한 고찰'
 ---
 
 # Recoil - Best Practice
