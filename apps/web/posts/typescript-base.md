@@ -1,7 +1,7 @@
 ---
 title: 'TypeScript usefull Skill'
 createdAt: '2023-10-07'
-tag: 'Typescript'
+tags: ['Typescript']
 description: '7 Awesome TypeScript Types. 알고 있으면 좋은 Typescript Type'
 ---
 
@@ -81,7 +81,7 @@ interface Todo {
 }
 
 const updateTodo = (todo: Todo, fieldsToUpdate: Todo) => {
-  return {...todo, fieldsToUpdate}
+  return { ...todo, fieldsToUpdate }
 }
 
 const initialTodo: Todo = {
@@ -89,11 +89,11 @@ const initialTodo: Todo = {
   description: 'Right Now'
 }
 
-const updatedTodo = updateTodo(initialTodo, {description: 'not yet'}) // Error
+const updatedTodo = updateTodo(initialTodo, { description: 'not yet' }) // Error
 
 // change code
 const updateTodo = (todo: Todo, fieldsToUpdate: Partial<Todo>) => {
-  return {...todo, fieldsToUpdate}
+  return { ...todo, fieldsToUpdate }
 }
 
 // Partial -> Optional
@@ -102,11 +102,11 @@ interface Todo {
   description?: string
 }
 
-const updatedTodo = updateTodo(initialTodo, {description: 'not yet'})
+const updatedTodo = updateTodo(initialTodo, { description: 'not yet' })
 
 // Requierd - not optional
 const updateTodo = (todo: Todo, fieldsToUpdate: Requierd<Todo>) => {
-  return {...todo, fieldsToUpdate}
+  return { ...todo, fieldsToUpdate }
 }
 ```
 
@@ -130,9 +130,9 @@ type Omiited = Omit<Todo, 'title'>
 ```
 
 ```ts
-type Shape = {kind: 'circle'; radius: number} | {kind: 'square'; x: number}
+type Shape = { kind: 'circle'; radius: number } | { kind: 'square'; x: number }
 
-type Omitted = Exclude<Shape, {kind: 'circle'}>
+type Omitted = Exclude<Shape, { kind: 'circle' }>
 // type Omitted = {
 //     kind: 'square';
 //     x: number;

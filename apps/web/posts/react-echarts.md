@@ -1,7 +1,7 @@
 ---
 title: 'ECharts'
 createdAt: '2023-04-26'
-tag: 'React'
+tags: ['React', 'Echarts']
 description: 'ECharts 사용법에 대해 간단하게 알아보고, echart-for-react 라이브러리 사용 방법을 알아보자'
 ---
 

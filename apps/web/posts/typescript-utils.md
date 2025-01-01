@@ -1,14 +1,14 @@
 ---
 title: 'TypeScript Utils'
 createdAt: '2024-06-29'
-tag: 'Typescript'
+tags: ['Typescript']
 description: 'Typescript utils'
 ---
 
 > One
 
 ```ts
-type one<T> = {[P in keyof T]: Record<P, T[P]>}[keyof T]
+type one<T> = { [P in keyof T]: Record<P, T[P]> }[keyof T]
 ```
 
 1. `[P in keyof T]` 에서 T는 객체로 가정하기 때문에 P는 T객체의 키 값을 말한다.
@@ -19,7 +19,7 @@ type one<T> = {[P in keyof T]: Record<P, T[P]>}[keyof T]
 > ExcludeOne
 
 ```ts
-type excludeOne<T> = {[P in keyof T]: Partial<Record<Exclude<keyof T, P>, undefined>>}[keyof T]
+type excludeOne<T> = { [P in keyof T]: Partial<Record<Exclude<keyof T, P>, undefined>> }[keyof T]
 ```
 
 1. `[P in keyof T]` 에서 T는 객체로 가정하기 때문에 P는 T객체의 키 값을 말한다.

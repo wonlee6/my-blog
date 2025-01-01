@@ -1,16 +1,9 @@
 'use client'
 
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle
-} from '@workspace/ui/components/card'
 import { format } from 'date-fns'
-import { CircleArrowUp } from 'lucide-react'
+import { Calendar1Icon, ChevronRightIcon, CircleArrowUp, TagIcon } from 'lucide-react'
 import Link from 'next/link'
-import { Fragment, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 
 import Footer from './footer'
 
@@ -42,38 +35,57 @@ export default function HomePage({ allPosts }: Props) {
 
   return (
     <>
-      <section className='relative mx-auto w-full max-w-screen-lg flex-1 px-4'>
-        <div className='my-10 h-20 border-b border-border/30'>
-          <h1 className='scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl'>Latest</h1>
+      <section className='relative mx-auto mb-8 w-full max-w-screen-lg flex-1 px-4'>
+        <div className='my-8 h-16'>
+          <h1 className='mb-4 text-4xl font-bold'>Latest Posts</h1>
+          <div className='h-1 w-20 bg-emerald-500'></div>
         </div>
 
-        <div className='flex flex-col gap-6'>
+        <div className='space-y-8'>
           {filteredPosts.map((item, index) => {
             const lastIndex = index === filteredPosts.length - 1
 
             return (
-              <Fragment key={item._id}>
-                <Card className='transition-all hover:bg-slate-200/10'>
-                  <CardHeader>
-                    <div className='flex justify-between'>
-                      <CardTitle>{item.title}</CardTitle>
-                      <CardDescription>
-                        {format(new Date(item.createdAt), 'yyyy년 MM월 dd일')}
-                      </CardDescription>
+              <article
+                key={item._id}
+                className='overflow-hidden rounded-lg bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl'>
+                <div className='p-6'>
+                  <div className='mb-3 flex items-center space-x-4 text-sm text-gray-500'>
+                    <span className='flex items-center'>
+                      <Calendar1Icon className='mr-1 size-4' />
+                      {format(new Date(item.createdAt), 'yyyy년 MM월 dd일')}
+                    </span>
+                  </div>
+
+                  <h2 className='mb-3 text-2xl font-semibold transition-colors hover:text-emerald-600'>
+                    {item.title}
+                  </h2>
+
+                  <p className='mb-4 text-gray-600'>{item.description}</p>
+
+                  <div className='flex items-center justify-between'>
+                    <div className='flex gap-2'>
+                      {item.tags.map((tag, tagIndex) => (
+                        <span
+                          key={tagIndex}
+                          className='inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-sm text-emerald-800'>
+                          <TagIcon className='mr-1 size-3' />
+                          {tag}
+                        </span>
+                      ))}
                     </div>
-                    <CardDescription>{item.description ?? ''}</CardDescription>
-                  </CardHeader>
-                  <CardFooter className='justify-end'>
+
                     <Link
-                      className='text-base font-semibold leading-6 text-teal-500 hover:text-teal-600'
+                      className='flex items-center text-base font-semibold leading-6 text-emerald-600 transition-colors hover:text-emerald-700'
                       href={`/post/${item._raw.flattenedPath}`}
                       prefetch>
-                      Read More -{'>'}
+                      Read More
+                      <ChevronRightIcon className='ml-1 size-4' />
                     </Link>
-                  </CardFooter>
-                </Card>
+                  </div>
+                </div>
                 {lastIndex ? <div ref={ref} style={{ height: '1px', width: '100%' }} /> : null}
-              </Fragment>
+              </article>
             )
           })}
         </div>

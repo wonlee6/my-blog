@@ -1,7 +1,7 @@
 ---
 title: '알면 좋은 javascript 정보'
 createdAt: '2021-06-13'
-tag: 'Javascript'
+tags: ['Javascript']
 description: '알고 있으면 나름 도움되는 javascript skill'
 ---
 
@@ -32,7 +32,7 @@ console.log(voluemm(1)) // 6
 > Object.entries() 는 객체에 담긴 키/값 들을 배열에 짝으로 변환한다.
 
 ```js
-const credits = {producer: 'John', director: 'Jane', assistant: 'Petter'}
+const credits = { producer: 'John', director: 'Jane', assistant: 'Petter' }
 const arr = Object.entries(credits)
 console.log(arr)
 /*
@@ -136,9 +136,9 @@ console.log(flat) // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 ```js
 const data2 = [
-  {a: 'happy', b: 'robin', c: ['blue', 'green']},
-  {a: 'tired', b: 'panther', c: ['green', 'black', 'orange', 'blue']},
-  {a: 'sad', b: 'goldfish', c: ['green', 'red']}
+  { a: 'happy', b: 'robin', c: ['blue', 'green'] },
+  { a: 'tired', b: 'panther', c: ['green', 'black', 'orange', 'blue'] },
+  { a: 'sad', b: 'goldfish', c: ['green', 'red'] }
 ]
 const colors = data2.reduce((total, amount) => {
   amount.c.forEach((color) => {

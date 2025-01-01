@@ -1,7 +1,7 @@
 ---
 title: 'Array Method'
 createdAt: '2021-06-13'
-tag: 'Javascript'
+tags: ['Javascript']
 description: 'javascript의 Array method 소개'
 ---
 
@@ -118,9 +118,9 @@ for (var i = 0; i < s.length; i++) {
 
 ```js
 let users = [
-  {id: 1, name: 'John'},
-  {id: 1, name: 'Pete'},
-  {id: 3, name: 'Mary'}
+  { id: 1, name: 'John' },
+  { id: 1, name: 'Pete' },
+  { id: 3, name: 'Mary' }
 ]
 let user = users.find((item) => item.id === 1)
 console.log(user.name) // John
@@ -136,9 +136,9 @@ true 값 하나만 반환, 찾는 요소가 없으면 `undefined` 반환
 
 ```js
 let users = [
-  {id: 1, name: 'John'},
-  {id: 2, name: 'Pete'},
-  {id: 3, name: 'Mary'}
+  { id: 1, name: 'John' },
+  { id: 2, name: 'Pete' },
+  { id: 3, name: 'Mary' }
 ]
 // 앞쪽 사용자 두 명을 반환합니다.
 let someUsers = users.filter((item) => item.id < 3)
@@ -158,9 +158,9 @@ console.log(result) // [6, 7, 8, 9, 10];
 
 ```js
 let kvArray = [
-  {key: 1, value: 10},
-  {key: 2, value: 20},
-  {key: 3, value: 30}
+  { key: 1, value: 10 },
+  { key: 2, value: 20 },
+  { key: 3, value: 30 }
 ]
 let reformattedArray = kvArray.map(function (obj) {
   let rObj = {}
@@ -246,9 +246,9 @@ alert(result) // 15
 
 ```js
 const data2 = [
-  {a: 'happy', b: 'robin', c: ['blue', 'green']},
-  {a: 'tired', b: 'panther', c: ['green', 'black', 'orange', 'blue']},
-  {a: 'sad', b: 'goldfish', c: ['green', 'red']}
+  { a: 'happy', b: 'robin', c: ['blue', 'green'] },
+  { a: 'tired', b: 'panther', c: ['green', 'black', 'orange', 'blue'] },
+  { a: 'sad', b: 'goldfish', c: ['green', 'red'] }
 ]
 const uniqueColors = data2.reduce((total, amount) => {
   amount.c.forEach((color) => {

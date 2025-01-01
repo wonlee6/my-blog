@@ -1,7 +1,7 @@
 ---
 title: 'javascrip 메모리 누수 with react'
 createdAt: '2024-08-06'
-tag: 'Javascript'
+tags: ['Javascript', 'React']
 description: 'javascript and react memory leak (closures)'
 ---
 

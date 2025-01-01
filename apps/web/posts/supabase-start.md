@@ -1,7 +1,7 @@
 ---
 title: 'Supabase 적용해보기'
 createdAt: '2024-08-08'
-tag: 'Supabase'
+tags: ['Supabase', 'Nextjs']
 description: 'Supabase - crud 적용해보기'
 ---
 

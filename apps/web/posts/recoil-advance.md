@@ -1,7 +1,7 @@
 ---
 title: 'Recoil - Advanced'
 createdAt: '2024-06-24'
-tag: 'recoil'
+tags: ['Recoil', 'React']
 description: 'Recoil Best Practice에 대한 고찰'
 ---
 

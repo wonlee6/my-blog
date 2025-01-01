@@ -1,7 +1,7 @@
 ---
 title: 'Next.js 15 version'
 createdAt: '2024-12-17'
-tag: 'Nextjs'
+tags: ['Nextjs']
 description: '14버전에서 15버전으로 마이그레이션 및 변경점에 대한 학습'
 ---
 

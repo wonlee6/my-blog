@@ -1,7 +1,7 @@
 ---
 title: 'Web Browser Storage'
 createdAt: '2024-07-07'
-tag: 'Etc'
+tags: ['Web Storage']
 description: 'Web browser storage(client 저장소)에 대해 알아보자'
 ---
 
@@ -84,7 +84,7 @@ const request = indexedDB.open('myDatabase', 1)
 request.onupgradeneeded = (event) => {
   const db = event.target.result
   if (!db.objectStoreNames.contains('myStore')) {
-    db.createObjectStore('myStore', {keyPath: 'id'})
+    db.createObjectStore('myStore', { keyPath: 'id' })
   }
 }
 
@@ -94,7 +94,7 @@ request.onsuccess = (event) => {
   // 데이터 추가
   const transaction = db.transaction('myStore', 'readwrite')
   const store = transaction.objectStore('myStore')
-  const addRequest = store.add({id: 1, name: 'John Doe', age: 30})
+  const addRequest = store.add({ id: 1, name: 'John Doe', age: 30 })
 
   addRequest.onsuccess = () => {
     console.log('Data added successfully')

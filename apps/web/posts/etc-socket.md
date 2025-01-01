@@ -1,7 +1,7 @@
 ---
 title: 'Socket 사용하여 간단한 채팅 구현'
 createdAt: '2024-07-20'
-tag: 'Etc'
+tags: ['Socket', 'express']
 description: 'Socket.io 이용하여 간단한 채팅 구현해보기'
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: 'Recoil - atomFamily 활용하기'
 createdAt: '2024-06-24'
-tag: 'Recoil'
+tags: ['Recoil', 'React']
 description: 'Recoil atomFamily 좀 더 적극적으로 활용해보기'
 ---
 
@@ -115,7 +115,7 @@ const somethingAtom = atomFamily<Person, string>({
 ```ts
 const fetchDataById = async (id: string, type: MPortalType): Promise<Person> => {
   try {
-    return await Service.getDataById({id})
+    return await Service.getDataById({ id })
   } catch (error) {
     console.error(error)
   }
@@ -123,7 +123,7 @@ const fetchDataById = async (id: string, type: MPortalType): Promise<Person> => 
 
 const getInitData =
   (id: string | undefined): AtomEffect<Person> =>
-  ({setSelf, trigger, getLoadable, onSet}) => {
+  ({ setSelf, trigger, getLoadable, onSet }) => {
     if (trigger === 'get' && id != null) {
       // Avoid expensive initialization
       const someAtomData = getLoadable(someAtom)

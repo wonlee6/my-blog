@@ -1,7 +1,7 @@
 ---
 title: 'Next js에서 jose 라이브러리를 이용해 session(쿠키) 다루기'
 createdAt: '2024-08-10'
-tag: 'Nextjs'
+tags: ['Nextjs', 'jose', 'session']
 description: 'jose 이용해서 session 로직을 만들어보고 middleware도 설정해보기'
 ---
 

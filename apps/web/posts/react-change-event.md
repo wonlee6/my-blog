@@ -1,7 +1,7 @@
 ---
 title: 'Change Event'
 createdAt: '2021-11-14'
-tag: 'React'
+tags: ['React']
 description: 'React - Change Event에 대한 정리'
 ---
 
