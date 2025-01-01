@@ -32,9 +32,18 @@ export default function PostSidebar() {
       tags: i.tags,
       id: i._raw.flattenedPath
     }))
-    return Object.groupBy(convertAllPosts, ({ tags }) => {
-      return tags.find((i) => markDownTags.includes(i)) || ''
-    })
+
+    return convertAllPosts.reduce(
+      (acc, cur) => {
+        const tag = cur.tags.find((t) => markDownTags.includes(t)) || 'Uncategorized'
+        if (!acc[tag]) {
+          acc[tag] = []
+        }
+        acc[tag].push(cur)
+        return acc
+      },
+      {} as Record<string, typeof convertAllPosts>
+    )
   }, [])
 
   return (
