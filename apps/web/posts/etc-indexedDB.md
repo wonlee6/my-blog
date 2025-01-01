@@ -1,7 +1,7 @@
 ---
 title: 'IndexedDB 사용해보기'
 createdAt: '2024-07-08'
-tags: ['Etc', 'Web Storage', 'Crypto-js']
+tags: ['Web Storage', 'Crypto-js', 'Etc']
 description: 'IndexedDB 활용 방법, crypto-js 사용하여 데이터 암호화하기'
 ---
 

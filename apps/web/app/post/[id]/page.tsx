@@ -39,11 +39,9 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
   }
 
   return (
-    <div className='w-full p-4'>
-      <article
-        className='prose dark:prose-invert'
-        dangerouslySetInnerHTML={{ __html: findPost.body.html }}
-      />
-    </div>
+    <article
+      className='prose w-full p-6 dark:prose-invert'
+      dangerouslySetInnerHTML={{ __html: findPost.body.html }}
+    />
   )
 }

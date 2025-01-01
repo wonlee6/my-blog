@@ -1,7 +1,7 @@
 ---
 title: 'Md file 가져오기'
 createdAt: '2023-04-17'
-tag: ['Nextjs']
+tags: ['Nextjs']
 description: 'Next에서 Md file을 가져오는 방법'
 ---
 

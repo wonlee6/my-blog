@@ -1,7 +1,7 @@
 ---
 title: 'NPM vs Yarn vs PNPM: 패키지 매니저 비교하기'
 createdAt: '2024-12-10'
-tags: ['Package Manager', 'npm', 'yarn', 'pnpm']
+tags: ['Package Manager', 'npm', 'yarn', 'pnpm', 'Etc']
 description: '주요 Node.js 패키지 매니저들의 특징과 차이점 비교'
 ---
 

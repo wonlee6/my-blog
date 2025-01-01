@@ -1,3 +1,5 @@
+'use client'
+
 import {
   Collapsible,
   CollapsibleContent,
@@ -15,36 +17,56 @@ import {
   SidebarMenuSubItem
 } from '@workspace/ui/components/sidebar'
 import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react'
+import Link from 'next/link'
+import { useMemo } from 'react'
+
+import { allPosts } from '@/.contentlayer/generated'
+import { markDownTags } from '@/types/mark-down-type'
 
 export default function PostSidebar() {
+  const filteredAllPosts = useMemo(() => {
+    if (!allPosts) return []
+
+    const convertAllPosts = allPosts.map((i) => ({
+      title: i.title,
+      tags: i.tags,
+      id: i._raw.flattenedPath
+    }))
+    return Object.groupBy(convertAllPosts, ({ tags }) => {
+      return tags.find((i) => markDownTags.includes(i)) || ''
+    })
+  }, [])
+
   return (
-    <Sidebar className='left-auto top-14'>
-      <SidebarContent>
+    <Sidebar className='left-auto top-14 h-[calc(100%_-_3.5rem)]' variant='floating'>
+      <SidebarContent className='scrollbar-hide overflow-y-auto'>
         <SidebarGroup>
           <SidebarMenu>
-            {data.navMain.map((item, index) => (
-              <Collapsible key={item.title} defaultOpen={index === 1} className='group/collapsible'>
+            {Object.entries(filteredAllPosts).map(([key, value]) => (
+              <Collapsible key={key} defaultOpen className='group/collapsible'>
                 <SidebarMenuItem>
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton>
-                      {item.title}{' '}
+                      {key}
                       <ChevronDownIcon className='ml-auto group-data-[state=open]/collapsible:hidden' />
                       <ChevronUpIcon className='ml-auto group-data-[state=closed]/collapsible:hidden' />
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
-                  {item.items?.length ? (
-                    <CollapsibleContent>
-                      <SidebarMenuSub>
-                        {item.items.map((item) => (
-                          <SidebarMenuSubItem key={item.title}>
-                            <SidebarMenuSubButton asChild isActive={item.isActive}>
-                              <a href={item.url}>{item.title}</a>
-                            </SidebarMenuSubButton>
-                          </SidebarMenuSubItem>
-                        ))}
-                      </SidebarMenuSub>
-                    </CollapsibleContent>
-                  ) : null}
+                  <CollapsibleContent>
+                    <SidebarMenuSub>
+                      {value
+                        ? value.map((item) => (
+                            <SidebarMenuSubItem key={item.id} className='min-w-0'>
+                              <SidebarMenuSubButton asChild>
+                                <Link href={`${item.id}`}>
+                                  <span className='truncate'>{item.title}</span>
+                                </Link>
+                              </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                          ))
+                        : null}
+                    </SidebarMenuSub>
+                  </CollapsibleContent>
                 </SidebarMenuItem>
               </Collapsible>
             ))}
@@ -53,144 +75,4 @@ export default function PostSidebar() {
       </SidebarContent>
     </Sidebar>
   )
-}
-
-const data = {
-  navMain: [
-    {
-      title: 'Getting Started',
-      url: '#',
-      items: [
-        {
-          title: 'Installation',
-          url: '#'
-        },
-        {
-          title: 'Project Structure',
-          url: '#'
-        }
-      ]
-    },
-    {
-      title: 'Building Your Application',
-      url: '#',
-      items: [
-        {
-          title: 'Routing',
-          url: '#'
-        },
-        {
-          title: 'Data Fetching',
-          url: '#',
-          isActive: true
-        },
-        {
-          title: 'Rendering',
-          url: '#'
-        },
-        {
-          title: 'Caching',
-          url: '#'
-        },
-        {
-          title: 'Styling',
-          url: '#'
-        },
-        {
-          title: 'Optimizing',
-          url: '#'
-        },
-        {
-          title: 'Configuring',
-          url: '#'
-        },
-        {
-          title: 'Testing',
-          url: '#'
-        },
-        {
-          title: 'Authentication',
-          url: '#'
-        },
-        {
-          title: 'Deploying',
-          url: '#'
-        },
-        {
-          title: 'Upgrading',
-          url: '#'
-        },
-        {
-          title: 'Examples',
-          url: '#'
-        }
-      ]
-    },
-    {
-      title: 'API Reference',
-      url: '#',
-      items: [
-        {
-          title: 'Components',
-          url: '#'
-        },
-        {
-          title: 'File Conventions',
-          url: '#'
-        },
-        {
-          title: 'Functions',
-          url: '#'
-        },
-        {
-          title: 'next.config.js Options',
-          url: '#'
-        },
-        {
-          title: 'CLI',
-          url: '#'
-        },
-        {
-          title: 'Edge Runtime',
-          url: '#'
-        }
-      ]
-    },
-    {
-      title: 'Architecture',
-      url: '#',
-      items: [
-        {
-          title: 'Accessibility',
-          url: '#'
-        },
-        {
-          title: 'Fast Refresh',
-          url: '#'
-        },
-        {
-          title: 'Next.js Compiler',
-          url: '#'
-        },
-        {
-          title: 'Supported Browsers',
-          url: '#'
-        },
-        {
-          title: 'Turbopack',
-          url: '#'
-        }
-      ]
-    },
-    {
-      title: 'Community',
-      url: '#',
-      items: [
-        {
-          title: 'Contribution Guide',
-          url: '#'
-        }
-      ]
-    }
-  ]
 }

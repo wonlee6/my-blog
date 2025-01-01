@@ -1,7 +1,7 @@
 ---
 title: 'Prettier 사용하여 editor 내 코드 정렬'
 createdAt: '2024-07-01'
-tags: ['Prettier, Monaco Editor']
+tags: ['Prettier, Monaco Editor', 'Etc']
 description: 'Prettier 사용하여 Monaco Editor 내 코드 정렬 하는 방법(vsCode extansion 아님)'
 ---
 

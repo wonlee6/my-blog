@@ -1,7 +1,7 @@
 ---
 title: 'Web Browser Storage'
 createdAt: '2024-07-07'
-tags: ['Web Storage']
+tags: ['Web Storage', 'Etc']
 description: 'Web browser storage(client 저장소)에 대해 알아보자'
 ---
 

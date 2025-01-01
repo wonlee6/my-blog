@@ -3,7 +3,7 @@
 import { format } from 'date-fns'
 import { Calendar1Icon, ChevronRightIcon, CircleArrowUp, TagIcon } from 'lucide-react'
 import Link from 'next/link'
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 
 import Footer from './footer'
 
@@ -18,6 +18,7 @@ export default function HomePage({ allPosts }: Props) {
   const allPostsLength = allPosts.length
 
   const [showListPosts, setShowListPosts] = useState(10)
+  const [showScrollTop, setShowScrollTop] = useState(false)
 
   const filteredPosts = useMemo(() => {
     return allPosts
@@ -32,6 +33,19 @@ export default function HomePage({ allPosts }: Props) {
       setShowListPosts((prev) => prev + 20)
     }
   })
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 200)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
     <>
@@ -93,11 +107,14 @@ export default function HomePage({ allPosts }: Props) {
 
       <Footer />
 
-      <CircleArrowUp
-        className='fixed bottom-20 right-20 cursor-pointer text-emerald-600 transition hover:text-emerald-500 max-lg:hidden'
-        size={60}
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      />
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className='fixed bottom-20 right-20 rounded-full bg-white p-2 shadow-lg transition-all duration-300 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 max-lg:hidden'
+          aria-label='Top Scroll'>
+          <CircleArrowUp className='size-8' />
+        </button>
+      )}
     </>
   )
 }

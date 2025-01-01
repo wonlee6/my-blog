@@ -2,6 +2,7 @@ import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
 import { fontFamily } from "tailwindcss/defaultTheme";
 import typography from '@tailwindcss/typography'
+import scrollBarHide from 'tailwind-scrollbar-hide'
 
 const config = {
   darkMode: ["class"],
@@ -96,7 +97,7 @@ const config = {
   		}
   	}
   },
-  plugins: [tailwindcssAnimate, typography],
+  plugins: [tailwindcssAnimate, typography, scrollBarHide],
 } satisfies Config;
 
 export default config;
