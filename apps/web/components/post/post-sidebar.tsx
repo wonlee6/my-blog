@@ -39,7 +39,7 @@ export default function PostSidebar() {
 
   return (
     <Sidebar className='left-auto top-14 h-[calc(100%_-_3.5rem)]' variant='floating'>
-      <SidebarContent className='scrollbar-hide overflow-y-auto'>
+      <SidebarContent className='overflow-y-auto scrollbar-hide'>
         <SidebarGroup>
           <SidebarMenu>
             {Object.entries(filteredAllPosts).map(([key, value]) => (

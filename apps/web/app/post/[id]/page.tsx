@@ -26,7 +26,7 @@ export async function generateMetadata(
   return {
     title: post.title,
     description: post.description,
-    authors: [{ name: 'sang won', url: `https://wonlee1205-blog.vercel.app/post/${id}` }],
+    authors: [{ name: 'sang won', url: `https://sangwon1205-blog.vercel.app/post/${id}` }],
     creator: 'sang won',
     keywords: post.tags,
     openGraph: {
@@ -35,10 +35,10 @@ export async function generateMetadata(
       locale: 'ko',
       description: post.description,
       title: post.title,
-      url: `https://wonlee1205-blog.vercel.app/post/${id}`,
+      url: `https://sangwon1205-blog.vercel.app/post/${id}`,
       images: [...previousImages]
     },
-    metadataBase: new URL(`https://wonlee1205-blog.vercel.app/post/${id}`)
+    metadataBase: new URL(`https://sangwon1205-blog.vercel.app/post/${id}`)
   }
 }
 
