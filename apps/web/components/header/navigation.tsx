@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from '@workspace/ui/components/dropdown-menu'
-import { Menu, MoonIcon, SunIcon } from 'lucide-react'
+import { HouseIcon, Menu, MoonIcon, SunIcon } from 'lucide-react'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 
@@ -19,7 +19,8 @@ export default function Navigation() {
       <div className='mx-auto flex h-14 items-center px-2 2xl:px-4'>
         <div className='mr-4 hidden md:flex'>
           <Link className='mr-4 flex items-center gap-2 lg:mr-6' href={'/'}>
-            My Blog
+            Home
+            <HouseIcon />
           </Link>
           <nav className='flex items-center gap-4 text-sm xl:gap-6'>
             <Link

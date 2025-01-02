@@ -1,5 +1,7 @@
 'use client'
 
+import { useMemo } from 'react'
+
 import {
   Collapsible,
   CollapsibleContent,
@@ -18,7 +20,6 @@ import {
 } from '@workspace/ui/components/sidebar'
 import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react'
 import Link from 'next/link'
-import { useMemo } from 'react'
 
 import { allPosts } from '@/.contentlayer/generated'
 import { markDownTags } from '@/types/mark-down-type'

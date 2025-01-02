@@ -68,27 +68,28 @@ export const nextJsConfig = [
       "import/order": [
         "warn",
         {
-          "groups": [
-            "type",
-            "builtin",
-            "object",
-            "external",
-            "internal",
-            "parent",
-            "sibling",
-            "index"
-          ],
+          "groups": ["builtin", "external", "internal", "type"],
+          // "groups": [
+          //   "type",
+          //   "builtin",
+          //   "object",
+          //   "external",
+          //   "internal",
+          //   "parent",
+          //   "sibling",
+          //   "index"
+          // ],
           "pathGroups": [
-            // {
-            //   "pattern": "react",
-            //   "group": "builtin",
-            //   "position": "before"
-            // }
             {
-              "pattern": "~/**",
-              "group": "external",
-              "position": "after"
+              "pattern": "react",
+              "group": "builtin",
+              "position": "before"
             }
+            // {
+            //   "pattern": "~/**",
+            //   "group": "external",
+            //   "position": "after"
+            // }
           ],
           "pathGroupsExcludedImportTypes": ["react"], // external로 간주되어 alias 적용안되는 문제 해결
           "alphabetize": {

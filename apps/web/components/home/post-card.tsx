@@ -1,6 +1,6 @@
 'use client'
 
-import type { Post } from '@/.contentlayer/generated'
+import { useMemo, useRef, useState } from 'react'
 
 import {
   Pagination,
@@ -14,7 +14,8 @@ import {
 import { format } from 'date-fns'
 import { Calendar1Icon, ChevronRightIcon, TagIcon } from 'lucide-react'
 import Link from 'next/link'
-import { useMemo, useRef, useState } from 'react'
+
+import type { Post } from '@/.contentlayer/generated'
 
 type Props = {
   allPosts: Post[]
