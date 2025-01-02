@@ -68,7 +68,7 @@ export default function PostSidebar() {
                         ? value.map((item) => (
                             <SidebarMenuSubItem key={item.id} className='min-w-0'>
                               <SidebarMenuSubButton asChild>
-                                <Link href={`${item.id}`}>
+                                <Link href={`/post/${item.id}`}>
                                   <span className='truncate'>{item.title}</span>
                                 </Link>
                               </SidebarMenuSubButton>

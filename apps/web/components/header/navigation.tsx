@@ -25,8 +25,8 @@ export default function Navigation() {
           <nav className='flex items-center gap-4 text-sm xl:gap-6'>
             <Link
               className='text-foreground/80 transition-colors hover:text-foreground/80'
-              href={'/'}>
-              Posts
+              href={'/post'}>
+              Post
             </Link>
             <Link
               className='text-foreground/80 transition-colors hover:text-foreground/80'

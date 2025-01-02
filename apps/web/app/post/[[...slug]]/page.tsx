@@ -5,15 +5,16 @@ import type { Metadata, ResolvingMetadata } from 'next'
 import { allPosts } from '@/.contentlayer/generated'
 
 type Props = {
-  params: Promise<{ id: string }>
+  params: Promise<{ slug?: string[] }>
 }
 
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const id = (await params).id
-  const post = allPosts.find((p) => p._raw.flattenedPath === id)
+  const getParam = await params
+  const slug = getParam.slug ? getParam.slug[0] : null
+  const post = allPosts.find((p) => p._raw.flattenedPath === slug)
 
   if (!post) {
     return {
@@ -26,7 +27,7 @@ export async function generateMetadata(
   return {
     title: post.title,
     description: post.description,
-    authors: [{ name: 'sang won', url: `https://sangwon1205-blog.vercel.app/post/${id}` }],
+    authors: [{ name: 'sang won', url: `https://sangwon1205-blog.vercel.app/post/${slug}` }],
     creator: 'sang won',
     keywords: post.tags,
     openGraph: {
@@ -35,20 +36,25 @@ export async function generateMetadata(
       locale: 'ko',
       description: post.description,
       title: post.title,
-      url: `https://sangwon1205-blog.vercel.app/post/${id}`,
+      url: `https://sangwon1205-blog.vercel.app/post/${slug}`,
       images: [...previousImages]
     },
-    metadataBase: new URL(`https://sangwon1205-blog.vercel.app/post/${id}`)
+    metadataBase: new URL(`https://sangwon1205-blog.vercel.app/post/${slug}`)
   }
 }
 
 export async function generateStaticParams() {
-  return allPosts.map((post) => ({ slug: post._raw.flattenedPath }))
+  return allPosts.map((post) => ({ slug: [post._raw.flattenedPath] }))
 }
 
 export default async function PostPage({ params }: Props) {
-  const slug = (await params).id
-  const findPost = allPosts.find((i) => i._raw.flattenedPath === slug)
+  const getParam = await params
+  const slug = getParam.slug ? getParam.slug[0] : null
+  const findPost = slug
+    ? allPosts.find((i) => i._raw.flattenedPath === slug)
+    : allPosts
+        .toSorted((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+        .at(0)
 
   if (!findPost) {
     return notFound()
