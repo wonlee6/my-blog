@@ -16,7 +16,8 @@ import {
   SidebarMenuItem,
   SidebarMenuSub,
   SidebarMenuSubButton,
-  SidebarMenuSubItem
+  SidebarMenuSubItem,
+  useSidebar
 } from '@workspace/ui/components/sidebar'
 import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react'
 import Link from 'next/link'
@@ -25,13 +26,16 @@ import { allPosts } from '@/.contentlayer/generated'
 import { markDownTags } from '@/types/mark-down-type'
 
 export default function PostSidebar() {
+  const { setOpenMobile, isMobile } = useSidebar()
+
   const filteredAllPosts = useMemo(() => {
     if (!allPosts) return []
 
     const convertAllPosts = allPosts.map((i) => ({
       title: i.title,
       tags: i.tags,
-      id: i._raw.flattenedPath
+      id: i._raw.flattenedPath,
+      url: i.url
     }))
 
     return convertAllPosts.reduce(
@@ -68,7 +72,13 @@ export default function PostSidebar() {
                         ? value.map((item) => (
                             <SidebarMenuSubItem key={item.id} className='min-w-0'>
                               <SidebarMenuSubButton asChild>
-                                <Link href={`/post/${item.id}`}>
+                                <Link
+                                  href={item.url}
+                                  onClick={() => {
+                                    if (isMobile) {
+                                      setOpenMobile(false)
+                                    }
+                                  }}>
                                   <span className='truncate'>{item.title}</span>
                                 </Link>
                               </SidebarMenuSubButton>

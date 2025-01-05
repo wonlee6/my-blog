@@ -95,7 +95,7 @@ export default function PostCard({ allPosts }: Props) {
 
                   <Link
                     className='flex items-center text-base font-semibold leading-6 text-emerald-600 transition-colors hover:text-emerald-700'
-                    href={`/post/${item._raw.flattenedPath}`}
+                    href={item.url}
                     prefetch>
                     Read More
                     <ChevronRightIcon className='ml-1 size-4' />

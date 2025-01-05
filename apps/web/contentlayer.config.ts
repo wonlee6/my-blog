@@ -25,6 +25,12 @@ export const Post = defineDocumentType(() => ({
       type: 'date',
       required: true
     }
+  },
+  computedFields: {
+    url: {
+      type: 'string',
+      resolve: (post) => `/post/${post._raw.flattenedPath}`
+    }
   }
 }))
 
@@ -38,7 +44,7 @@ export default makeSource({
       [
         rehypePrettyCode,
         {
-          theme: 'github-dark' // 코드작성시 적용할 테마
+          theme: 'github-dark'
         }
       ],
       highlight

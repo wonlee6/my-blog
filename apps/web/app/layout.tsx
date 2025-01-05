@@ -6,6 +6,9 @@ import '@workspace/ui/globals.css'
 import Navigation from '@/components/header/navigation'
 import { Providers } from '@/components/providers'
 
+// eslint-disable-next-line import/order
+import { SidebarProvider } from '@workspace/ui/components/sidebar'
+
 const fontSans = Geist({
   subsets: ['latin'],
   variable: '--font-sans'
@@ -27,10 +30,12 @@ export default function RootLayout({
         <Providers>
           <div className='relative flex min-h-svh flex-col bg-background'>
             <div className='border-grid flex flex-1 flex-col'>
-              <header className='border-grid sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
-                <Navigation />
-              </header>
-              <main className='flex flex-1 flex-col'>{children}</main>
+              <SidebarProvider className='flex-col'>
+                <header className='border-grid sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
+                  <Navigation />
+                </header>
+                <main className='flex flex-1 flex-col'>{children}</main>
+              </SidebarProvider>
             </div>
           </div>
         </Providers>

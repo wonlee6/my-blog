@@ -7,7 +7,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from '@workspace/ui/components/dropdown-menu'
-import { HouseIcon, Menu, MoonIcon, SunIcon } from 'lucide-react'
+import { SidebarTrigger } from '@workspace/ui/components/sidebar'
+import { HouseIcon, MoonIcon, SunIcon } from 'lucide-react'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 
@@ -17,7 +18,7 @@ export default function Navigation() {
   return (
     <div className='mx-auto w-full max-w-screen-xl'>
       <div className='mx-auto flex h-14 items-center px-2 2xl:px-4'>
-        <div className='mr-4 hidden md:flex'>
+        <div className='mr-4 hidden lg:flex'>
           <Link className='mr-4 flex items-center gap-2 lg:mr-6' href={'/'}>
             Home
             <HouseIcon />
@@ -46,9 +47,7 @@ export default function Navigation() {
           </nav>
         </div>
 
-        <Button className='md:hidden' variant='ghost' size='icon'>
-          <Menu />
-        </Button>
+        <SidebarTrigger className='lg:hidden' />
 
         <div className='flex flex-1 items-center justify-end'>
           <DropdownMenu>
