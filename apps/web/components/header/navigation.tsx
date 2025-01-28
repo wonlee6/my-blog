@@ -19,31 +19,42 @@ export default function Navigation() {
     <div className='mx-auto w-full max-w-screen-xl'>
       <div className='mx-auto flex h-14 items-center px-2 2xl:px-4'>
         <div className='mr-4 hidden lg:flex'>
-          <Link className='mr-4 flex items-center gap-2 lg:mr-6' href={'/'}>
-            Home
-            <HouseIcon />
-          </Link>
+          <Button variant='ghost' className='mr-4 lg:mr-6' asChild>
+            <Link href={'/'} className='flex items-center gap-2'>
+              Home
+              <HouseIcon />
+            </Link>
+          </Button>
           <nav className='flex items-center gap-4 text-sm xl:gap-6'>
-            <Link
-              className='text-foreground/80 transition-colors hover:text-foreground/80'
-              href={'/post'}>
-              Post
-            </Link>
-            <Link
-              className='text-foreground/80 transition-colors hover:text-foreground/80'
-              href={'/'}>
-              Charts
-            </Link>
-            <Link
+            <Button variant='ghost' asChild>
+              <Link
+                className='text-foreground/80 transition-colors hover:text-foreground'
+                href={'/post'}>
+                Post
+              </Link>
+            </Button>
+
+            <Button variant='ghost' asChild>
+              <Link
+                className='text-foreground/80 transition-colors hover:text-foreground'
+                href={'/etf'}>
+                ETF
+              </Link>
+            </Button>
+
+            {/* <Link
               className='text-foreground/80 transition-colors hover:text-foreground/80'
               href={'/'}>
               Web Builder
-            </Link>
-            <Link
-              className='text-foreground/80 transition-colors hover:text-foreground/80'
-              href={'/'}>
-              About me
-            </Link>
+            </Link> */}
+
+            <Button variant='ghost' asChild>
+              <Link
+                className='text-foreground/80 transition-colors hover:text-foreground'
+                href={'/'}>
+                About me
+              </Link>
+            </Button>
           </nav>
         </div>
 
