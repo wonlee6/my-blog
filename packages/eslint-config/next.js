@@ -65,6 +65,7 @@ export const nextJsConfig = [
       ...eslintImport.configs.recommended.rules,
       "tailwindcss/no-custom-classname": "off",
       "import/no-unresolved": "off",
+      "import/named": "off",
       "import/order": [
         "warn",
         {

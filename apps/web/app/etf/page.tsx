@@ -6,6 +6,12 @@ export default async function ETFPage() {
   const data = await getData()
   return (
     <div className='w-full'>
+      <div className='ml-3'>
+        <h1 className='mt-8 text-3xl font-bold leading-tight tracking-tighter md:block md:text-4xl lg:leading-[1.1]'>
+          YieldMax Option Income Strategy ETF
+        </h1>
+        <p className='my-3 max-w-2xl text-lg font-medium text-foreground'>일드맥스 ETF 가계부</p>
+      </div>
       <DataTable columns={columns} data={data} />
     </div>
   )

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import {
   ColumnDef,
@@ -8,11 +8,9 @@ import {
   flexRender,
   getCoreRowModel,
   useReactTable,
-  getSortedRowModel,
-  RowData
+  getSortedRowModel
   // getPaginationRowModel - Pagination
 } from '@tanstack/react-table'
-import { Button } from '@workspace/ui/components/button'
 import {
   Table,
   TableBody,
@@ -62,8 +60,8 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
   })
 
   return (
-    <div className='m-3 block max-w-full overflow-y-hidden overflow-x-scroll rounded-md border p-2'>
-      <Table>
+    <div className='block max-w-full overflow-y-hidden overflow-x-scroll rounded-md border p-2'>
+      <Table className='table-fixed'>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
@@ -82,7 +80,10 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
         <TableBody>
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+              <TableRow
+                key={row.id}
+                data-state={row.getIsSelected() && 'selected'}
+                className='h-12'>
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

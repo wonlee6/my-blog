@@ -7,14 +7,14 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "clean": "rimraf node_modules && rimraf .turbo && rimraf ./apps/web/node_modules && rimraf ./apps/web/.turbo && rimraf ./apps/web/.next"
+    "clean": "rimraf node_modules && rimraf .turbo && rimraf ./apps/web/node_modules && rimraf ./apps/web/.turbo && rimraf ./apps/web/.next && rimraf ./packages/ui/node_modules && rimraf ./packages/eslint-config/node_modules"
   },
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",
     "@workspace/prettier-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "prettier": "^3.2.5",
-    "turbo": "^2.3.3",
+    "turbo": "^2.3.4",
     "typescript": "^5"
   },
   "packageManager": "pnpm@9.15.2",
