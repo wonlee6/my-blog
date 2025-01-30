@@ -1,24 +1,22 @@
 import { columns, YieldMax } from '@/components/etf/columns'
 import { DataTable } from '@/components/etf/data-table'
 
-// YieldMax Option Income Strategy ET
 export default async function ETFPage() {
   const data = await getData()
   return (
-    <div className='w-full'>
-      <div className='ml-3'>
-        <h1 className='mt-8 text-3xl font-bold leading-tight tracking-tighter md:block md:text-4xl lg:leading-[1.1]'>
-          YieldMax Option Income Strategy ETF
-        </h1>
-        <p className='my-3 max-w-2xl text-lg font-medium text-foreground'>일드맥스 ETF 가계부</p>
-      </div>
+    <div className='w-full p-3'>
+      <h1 className='mt-8 text-3xl font-bold leading-tight tracking-tighter md:block md:text-4xl lg:leading-[1.1]'>
+        YieldMax Option Income Strategy ETF
+      </h1>
+      <p className='mb-6 mt-2 max-w-2xl text-lg font-medium text-foreground'>
+        Eldmax ETF household account book
+      </p>
       <DataTable columns={columns} data={data} />
     </div>
   )
 }
 
 async function getData(): Promise<YieldMax[]> {
-  // Fetch data from your API here.
   return [
     {
       name: 'TSLY',

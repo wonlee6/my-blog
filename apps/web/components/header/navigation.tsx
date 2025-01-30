@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger
 } from '@workspace/ui/components/dropdown-menu'
 import { SidebarTrigger } from '@workspace/ui/components/sidebar'
-import { HouseIcon, MoonIcon, SunIcon } from 'lucide-react'
+import { Coins, HouseIcon, LibraryBig, MoonIcon, SunIcon } from 'lucide-react'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 
@@ -18,18 +18,19 @@ export default function Navigation() {
   return (
     <div className='mx-auto w-full max-w-screen-xl'>
       <div className='mx-auto flex h-14 items-center px-2 2xl:px-4'>
-        <div className='mr-4 hidden lg:flex'>
+        <div className='mr-3 hidden lg:flex'>
           <Button variant='ghost' className='mr-4 lg:mr-6' asChild>
             <Link href={'/'} className='flex items-center gap-2'>
-              Home
               <HouseIcon />
+              Home
             </Link>
           </Button>
-          <nav className='flex items-center gap-4 text-sm xl:gap-6'>
+          <nav className='flex items-center gap-1 text-sm'>
             <Button variant='ghost' asChild>
               <Link
                 className='text-foreground/80 transition-colors hover:text-foreground'
                 href={'/post'}>
+                <LibraryBig />
                 Post
               </Link>
             </Button>
@@ -38,6 +39,7 @@ export default function Navigation() {
               <Link
                 className='text-foreground/80 transition-colors hover:text-foreground'
                 href={'/etf'}>
+                <Coins />
                 ETF
               </Link>
             </Button>
