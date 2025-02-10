@@ -8,25 +8,17 @@ import { Input } from '@workspace/ui/components/input'
 import { ArrowDown, ArrowUp, ArrowUpDown } from 'lucide-react'
 
 import { formatCurrency, formatNumberInput } from '@/lib/utils'
-
-export type YieldMax = {
-  name: string
-  month1: number
-  month2: number
-  month3: number
-  month4: number
-  month5: number
-  month6: number
-  month7: number
-  month8: number
-  month9: number
-  month10: number
-  month11: number
-  month12: number
-}
+import { YieldMax } from '@/types/data-table-type'
 
 export const columns: ColumnDef<YieldMax>[] = Array.from({ length: 13 }, (_, index) => {
-  const key = index === 0 ? 'name' : `month${index}`
+  let key = `month${index}`
+  let columnHeaderName = `${index}월`
+
+  if (index === 0) {
+    key = 'name'
+    columnHeaderName = 'Name'
+  }
+
   return {
     id: key,
     accessorKey: key,
@@ -46,7 +38,7 @@ export const columns: ColumnDef<YieldMax>[] = Array.from({ length: 13 }, (_, ind
           className='max-sm:px-1'
           variant='ghost'
           onClick={header.column.getToggleSortingHandler()}>
-          {index === 0 ? 'Name' : `${index}월`}
+          {columnHeaderName}
           {sort}
         </Button>
       )
@@ -65,7 +57,7 @@ type DataTableCellProps = {
   index: number
 }
 
-function DataTableCell({ getValue, row, column: { id }, table, index }: DataTableCellProps) {
+function DataTableCell({ getValue, row, column: { id }, table }: DataTableCellProps) {
   const initialValue = getValue()
   const currency = table.options.meta?.selectedCurrency as 'KRW' | 'USD'
   const exchangeRates = table.options.meta?.exchangeRates as number
@@ -121,7 +113,7 @@ function DataTableCell({ getValue, row, column: { id }, table, index }: DataTabl
       onKeyDown={(e) => e.key === 'Enter' && handleEditCell()}
       role='button'
       tabIndex={0}>
-      {index === 0
+      {id === 'name'
         ? (initialValue as string)
         : formatCurrency(initialValue as string, currency, exchangeRates)}
     </div>

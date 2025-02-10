@@ -1,3 +1,5 @@
+import { YieldMax } from '@/types/data-table-type'
+
 export async function sleep(wait = 0) {
   return new Promise<void>((resolve) => {
     setTimeout(() => {
@@ -61,4 +63,11 @@ export const formatWON = (value: string | number, exchangeRates: number): string
   }
 
   return `${sum.toFixed(1)}원`
+}
+
+export function getMonthSum(row: YieldMax) {
+  return Object.keys(row)
+    .filter((i) => i.startsWith('month'))
+    .reduce((acc, cur) => acc + Number(row[cur as keyof YieldMax]), 0)
+    .toFixed(2)
 }

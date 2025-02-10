@@ -35,21 +35,22 @@ import {
 } from '@workspace/ui/components/table'
 import { ListPlus } from 'lucide-react'
 
-import CurrencyToggle from '.'
+import CurrencyToggle from './currency-toggle'
 import useIsDesktop from '@/hooks/useIsDesktop'
+import { YieldMax } from '@/types/data-table-type'
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+interface DataTableProps<TValue> {
+  columns: ColumnDef<YieldMax, TValue>[]
+  data: YieldMax[]
 }
 
-export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
+export function DataTable<TValue>({ columns, data }: DataTableProps<TValue>) {
   const isDesktop = useIsDesktop()
 
   const [selectedCurrency, setSelectedCurrency] = useState<'KRW' | 'USD'>('USD')
   const [exchangeRates, setExchangeRates] = useState(1400)
 
-  const [tableData, setTableData] = useState<TData[]>(() => {
+  const [tableData, setTableData] = useState<YieldMax[]>(() => {
     return data
   })
 
@@ -130,7 +131,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
                   setTableData((prev) => [
                     ...prev,
                     {
-                      name: Object.fromEntries(formData)['name'],
+                      name: (Object.fromEntries(formData)['name'] as string) ?? '',
                       month1: 0,
                       month2: 0,
                       month3: 0,
@@ -143,7 +144,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
                       month10: 0,
                       month11: 0,
                       month12: 0
-                    } as TData
+                    }
                   ])
                 }}>
                 <DialogHeader>

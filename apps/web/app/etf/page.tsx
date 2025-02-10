@@ -1,5 +1,6 @@
-import { columns, YieldMax } from '@/components/etf/columns'
+import { columns } from '@/components/etf/columns'
 import { DataTable } from '@/components/etf/data-table'
+import { YieldMax } from '@/types/data-table-type'
 
 export default async function ETFPage() {
   const data = await getData()
