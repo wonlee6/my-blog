@@ -9,18 +9,28 @@ declare module '@tanstack/react-table' {
   }
 }
 
-export type YieldMax = {
+export const MONTHS = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
+] as const
+
+interface MonthlyData {
+  month: (typeof MONTHS)[number]
+  amount: number
+}
+
+export interface YieldMaxInvestment {
+  id: string
   name: string
-  month1: number
-  month2: number
-  month3: number
-  month4: number
-  month5: number
-  month6: number
-  month7: number
-  month8: number
-  month9: number
-  month10: number
-  month11: number
-  month12: number
+  monthlyData: MonthlyData[]
 }

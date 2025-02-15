@@ -8,20 +8,44 @@ import { Input } from '@workspace/ui/components/input'
 import { ArrowDown, ArrowUp, ArrowUpDown } from 'lucide-react'
 
 import { formatCurrency, formatNumberInput } from '@/lib/utils'
-import { YieldMax } from '@/types/data-table-type'
+import { MONTHS, YieldMaxInvestment } from '@/types/data-table-type'
 
-export const columns: ColumnDef<YieldMax>[] = Array.from({ length: 13 }, (_, index) => {
-  let key = `month${index}`
-  let columnHeaderName = `${index}월`
+const nameColumn: ColumnDef<YieldMaxInvestment> = {
+  id: 'name',
+  accessorKey: 'name',
+  header: ({ column, header }) => {
+    const sortClassName = 'size-4'
+    const sort =
+      column.getIsSorted() === 'desc' ? (
+        <ArrowDown className={sortClassName} />
+      ) : column.getIsSorted() === 'asc' ? (
+        <ArrowUp className={sortClassName} />
+      ) : (
+        <ArrowUpDown className={sortClassName} />
+      )
+    return (
+      <Button
+        className='max-sm:px-1'
+        variant='ghost'
+        onClick={header.column.getToggleSortingHandler()}>
+        name
+        {sort}
+      </Button>
+    )
+  },
+  cell: ({ getValue, row, column, table }) => (
+    <DataTableCell getValue={getValue} row={row} index={0} table={table} column={column} />
+  )
+}
 
-  if (index === 0) {
-    key = 'name'
-    columnHeaderName = 'Name'
-  }
-
+const monthColumns: ColumnDef<YieldMaxInvestment>[] = MONTHS.map((month, index) => {
+  const columnHeaderName = `${index + 1}월`
   return {
-    id: key,
-    accessorKey: key,
+    id: month,
+    accessorFn: (row) => {
+      const monthData = row.monthlyData.find((data) => data.month === month)
+      return monthData?.amount ?? 0
+    },
     header: ({ column, header }) => {
       const sortClassName = 'size-4'
       const sort =
@@ -32,7 +56,6 @@ export const columns: ColumnDef<YieldMax>[] = Array.from({ length: 13 }, (_, ind
         ) : (
           <ArrowUpDown className={sortClassName} />
         )
-
       return (
         <Button
           className='max-sm:px-1'
@@ -49,11 +72,13 @@ export const columns: ColumnDef<YieldMax>[] = Array.from({ length: 13 }, (_, ind
   }
 })
 
+export const columns: ColumnDef<YieldMaxInvestment>[] = [nameColumn, ...monthColumns]
+
 type DataTableCellProps = {
   getValue: Getter<unknown>
-  row: Row<YieldMax>
-  column: Column<YieldMax, unknown>
-  table: Table<YieldMax>
+  row: Row<YieldMaxInvestment>
+  column: Column<YieldMaxInvestment, unknown>
+  table: Table<YieldMaxInvestment>
   index: number
 }
 
@@ -73,7 +98,8 @@ function DataTableCell({ getValue, row, column: { id }, table }: DataTableCellPr
       if (id === 'name') {
         setValue(e.target.value)
       } else {
-        setValue(formatNumberInput(e.target.value))
+        const numValue = formatNumberInput(e.target.value)
+        setValue(typeof numValue === 'string' ? parseFloat(numValue) || 0 : numValue)
       }
     },
     [id]
@@ -94,7 +120,7 @@ function DataTableCell({ getValue, row, column: { id }, table }: DataTableCellPr
     return (
       <Input
         ref={inputRef}
-        value={value as string}
+        value={typeof value === 'number' ? value.toString() : (value as string)}
         onChange={handleChangeValue}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
@@ -115,7 +141,11 @@ function DataTableCell({ getValue, row, column: { id }, table }: DataTableCellPr
       tabIndex={0}>
       {id === 'name'
         ? (initialValue as string)
-        : formatCurrency(initialValue as string, currency, exchangeRates)}
+        : formatCurrency(
+            typeof value === 'number' ? value.toString() : (value as string),
+            currency,
+            exchangeRates
+          )}
     </div>
   )
 }

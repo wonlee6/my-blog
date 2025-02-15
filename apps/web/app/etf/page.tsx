@@ -1,53 +1,81 @@
-import { columns } from '@/components/etf/columns'
-import { DataTable } from '@/components/etf/data-table'
-import { YieldMax } from '@/types/data-table-type'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@workspace/ui/components/select'
+import { v4 as uuidv4 } from 'uuid'
+
+import ETFDashboard from '@/components/etf/etf-dashboard'
+import { YieldMaxInvestment } from '@/types/data-table-type'
 
 export default async function ETFPage() {
   const data = await getData()
   return (
-    <div className='w-full p-3'>
-      <h1 className='mt-8 text-3xl font-bold leading-tight tracking-tighter md:block md:text-4xl lg:leading-[1.1]'>
-        YieldMax Option Income Strategy ETF
-      </h1>
-      <p className='mb-6 mt-2 max-w-2xl text-lg font-medium text-foreground'>
-        Eldmax ETF household account book
-      </p>
-      <DataTable columns={columns} data={data} />
+    <div className='w-full px-4'>
+      <div className='flex h-min items-center justify-between'>
+        <div>
+          <h1 className='mt-4 text-3xl font-bold leading-tight tracking-tighter md:block md:text-4xl lg:leading-[1.1]'>
+            YieldMax Option Income Strategy ETF
+          </h1>
+          <p className='mb-3 mt-2 max-w-2xl text-lg font-medium text-foreground'>
+            YieldMax ETF household account book
+          </p>
+        </div>
+        <Select>
+          <SelectTrigger className='w-[180px]'>
+            <SelectValue placeholder='Theme' />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value='light'>Light</SelectItem>
+            <SelectItem value='dark'>Dark</SelectItem>
+            <SelectItem value='system'>System</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <ETFDashboard data={data} />
     </div>
   )
 }
 
-async function getData(): Promise<YieldMax[]> {
+async function getData(): Promise<YieldMaxInvestment[]> {
   return [
     {
+      id: uuidv4(),
       name: 'TSLY',
-      month1: 100,
-      month2: 12,
-      month3: 33,
-      month4: 0,
-      month5: 0,
-      month6: 0,
-      month7: 0,
-      month8: 0,
-      month9: 0,
-      month10: 0,
-      month11: 0,
-      month12: 0
+      monthlyData: [
+        { month: 'January', amount: 100 },
+        { month: 'February', amount: 12 },
+        { month: 'March', amount: 33 },
+        { month: 'April', amount: 0 },
+        { month: 'May', amount: 0 },
+        { month: 'June', amount: 0 },
+        { month: 'July', amount: 0 },
+        { month: 'August', amount: 0 },
+        { month: 'September', amount: 0 },
+        { month: 'October', amount: 0 },
+        { month: 'November', amount: 0 },
+        { month: 'December', amount: 0 }
+      ]
     },
     {
+      id: uuidv4(),
       name: 'NVDY',
-      month1: 0,
-      month2: 12.445,
-      month3: 33.654,
-      month4: 0.5,
-      month5: 30.3,
-      month6: 0,
-      month7: 40,
-      month8: 50,
-      month9: 0,
-      month10: 0,
-      month11: 30,
-      month12: 0
+      monthlyData: [
+        { month: 'January', amount: 100 },
+        { month: 'February', amount: 12 },
+        { month: 'March', amount: 33 },
+        { month: 'April', amount: 0 },
+        { month: 'May', amount: 0 },
+        { month: 'June', amount: 0 },
+        { month: 'July', amount: 0 },
+        { month: 'August', amount: 0 },
+        { month: 'September', amount: 0 },
+        { month: 'October', amount: 0 },
+        { month: 'November', amount: 0 },
+        { month: 'December', amount: 0 }
+      ]
     }
   ]
 }

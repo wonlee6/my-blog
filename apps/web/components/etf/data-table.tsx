@@ -34,14 +34,15 @@ import {
   TableRow
 } from '@workspace/ui/components/table'
 import { ListPlus } from 'lucide-react'
+import { v4 as uuidv4 } from 'uuid'
 
 import CurrencyToggle from './currency-toggle'
 import useIsDesktop from '@/hooks/useIsDesktop'
-import { YieldMax } from '@/types/data-table-type'
+import { YieldMaxInvestment } from '@/types/data-table-type'
 
 interface DataTableProps<TValue> {
-  columns: ColumnDef<YieldMax, TValue>[]
-  data: YieldMax[]
+  columns: ColumnDef<YieldMaxInvestment, TValue>[]
+  data: YieldMaxInvestment[]
 }
 
 export function DataTable<TValue>({ columns, data }: DataTableProps<TValue>) {
@@ -50,7 +51,7 @@ export function DataTable<TValue>({ columns, data }: DataTableProps<TValue>) {
   const [selectedCurrency, setSelectedCurrency] = useState<'KRW' | 'USD'>('USD')
   const [exchangeRates, setExchangeRates] = useState(1400)
 
-  const [tableData, setTableData] = useState<YieldMax[]>(() => {
+  const [tableData, setTableData] = useState<YieldMaxInvestment[]>(() => {
     return data
   })
 
@@ -78,8 +79,16 @@ export function DataTable<TValue>({ columns, data }: DataTableProps<TValue>) {
           old.map((row, index) => {
             if (index === rowIndex) {
               return {
-                ...old[rowIndex]!,
-                [columnId]: value
+                ...row,
+                monthlyData: row.monthlyData.map((monthData) => {
+                  if (monthData.month === columnId) {
+                    return {
+                      ...monthData,
+                      amount: value as number
+                    }
+                  }
+                  return monthData
+                })
               }
             }
             return row
@@ -131,19 +140,22 @@ export function DataTable<TValue>({ columns, data }: DataTableProps<TValue>) {
                   setTableData((prev) => [
                     ...prev,
                     {
+                      id: uuidv4(),
                       name: (Object.fromEntries(formData)['name'] as string) ?? '',
-                      month1: 0,
-                      month2: 0,
-                      month3: 0,
-                      month4: 0,
-                      month5: 0,
-                      month6: 0,
-                      month7: 0,
-                      month8: 0,
-                      month9: 0,
-                      month10: 0,
-                      month11: 0,
-                      month12: 0
+                      monthlyData: [
+                        { month: 'January', amount: 0 },
+                        { month: 'February', amount: 0 },
+                        { month: 'March', amount: 0 },
+                        { month: 'April', amount: 0 },
+                        { month: 'May', amount: 0 },
+                        { month: 'June', amount: 0 },
+                        { month: 'July', amount: 0 },
+                        { month: 'August', amount: 0 },
+                        { month: 'September', amount: 0 },
+                        { month: 'October', amount: 0 },
+                        { month: 'November', amount: 0 },
+                        { month: 'December', amount: 0 }
+                      ]
                     }
                   ])
                 }}>

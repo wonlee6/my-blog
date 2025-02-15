@@ -1,4 +1,4 @@
-import { YieldMax } from '@/types/data-table-type'
+import { YieldMaxInvestment } from '@/types/data-table-type'
 
 export async function sleep(wait = 0) {
   return new Promise<void>((resolve) => {
@@ -38,13 +38,14 @@ export const formatNumberInput = (value: string): string => {
 }
 
 export const formatUSD = (value: string | number): string => {
-  const num = Number.isInteger(value) ? value : Number(value).toFixed(2)
+  const num = parseFloat(String(value))
+  const hasDecimal = num % 1 !== 0
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-    minimumFractionDigits: Number.isInteger(value) ? 0 : 2,
-    maximumFractionDigits: Number.isInteger(value) ? 0 : 2
-  }).format(Number(num))
+    minimumFractionDigits: hasDecimal ? 2 : 0,
+    maximumFractionDigits: hasDecimal ? 2 : 0
+  }).format(num)
 }
 
 export const formatWON = (value: string | number, exchangeRates: number): string => {
@@ -65,9 +66,9 @@ export const formatWON = (value: string | number, exchangeRates: number): string
   return `${sum.toFixed(1)}원`
 }
 
-export function getMonthSum(row: YieldMax) {
+export function getMonthSum(row: YieldMaxInvestment) {
   return Object.keys(row)
     .filter((i) => i.startsWith('month'))
-    .reduce((acc, cur) => acc + Number(row[cur as keyof YieldMax]), 0)
+    .reduce((acc, cur) => acc + Number(row[cur as keyof YieldMaxInvestment]), 0)
     .toFixed(2)
 }
