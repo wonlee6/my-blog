@@ -9,7 +9,8 @@
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "build:content": "contentlayer2 build"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^15.1.7",
